@@ -137,7 +137,14 @@
   cd Kind-observability/kind-cluster
   kubectl apply -f dashboard-adminuser.yml
   ```
-
+- Get service running in the namespace kubernetes-dashboard
+      ```bash
+  kubectl get svc -n kubernetes-dashboard
+  ```
+- Port-forward service name"kubernetes-dashboard" in the namespace kubernetes-dashboard
+      ```bash
+  kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 8080:443 &
+  ```
 - Create a token for dashboard access:
   ```bash
   kubectl -n kubernetes-dashboard create token admin-user
