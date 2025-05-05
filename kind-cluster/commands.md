@@ -138,11 +138,11 @@
   kubectl apply -f dashboard-adminuser.yml
   ```
 - Get service running in the namespace kubernetes-dashboard
-      ```bash
+  ```bash
   kubectl get svc -n kubernetes-dashboard
   ```
 - Port-forward service name"kubernetes-dashboard" in the namespace kubernetes-dashboard
-      ```bash
+  ```bash
   kubectl port-forward -n kubernetes-dashboard service/kubernetes-dashboard 8080:443 &
   ```
 - Create a token for dashboard access:
