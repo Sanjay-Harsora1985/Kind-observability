@@ -52,8 +52,8 @@
 
 - Clone the voting app repository:
   ```bash
-  git clone https://github.com/dockersamples/example-voting-app.git
-  cd example-voting-app/
+  git clone https://github.com/Sanjay-Harsora1985/Kind-observability.git
+  cd Kind-observability/
   ```
 
 - Apply Kubernetes YAML specifications for the voting app:
