@@ -140,7 +140,7 @@
 ---
 
 ## 9. Argo CD Initial Admin Password
-
+- Username: admin
 - Retrieve Argo CD admin password:
   ```bash
   kubectl get secret -n argocd argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
