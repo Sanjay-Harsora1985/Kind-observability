@@ -116,30 +116,7 @@
 
 ---
 
-## 7. Deleting Kubernetes Cluster
-
-- Delete the Kind cluster:
-  ```bash
-  kind delete cluster --name=kind
-  ```
-
----
-
-## 8. Installing Kubernetes Dashboard
-
-- Deploy Kubernetes dashboard:
-  ```bash
-  kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
-  ```
-
-- Create a token for dashboard access:
-  ```bash
-  kubectl -n kubernetes-dashboard create token admin-user
-  ```
-
----
-
-## 9. Argo CD Initial Admin Password
+## 7. Argo CD Initial Admin Password
 - Username: admin
 - Retrieve Argo CD admin password:
   ```bash
@@ -149,7 +126,26 @@
 
 ---
 
-## 10. Install HELM
+## 8. Installing Kubernetes Dashboard
+
+- Deploy Kubernetes dashboard:
+  ```bash
+  kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+  ```
+- Create service Account for "admin-user"
+    ```bash
+  cd Kind-observability/kind-cluster
+  kubectl apply -f dashboard-adminuser.yml
+  ```
+
+- Create a token for dashboard access:
+  ```bash
+  kubectl -n kubernetes-dashboard create token admin-user
+  ```
+
+---
+
+## 9. Install HELM
 
 ```bash
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
@@ -159,7 +155,7 @@ chmod 700 get_helm.sh
 
 ---
 
-## 11. Install Kube Prometheus Stack
+## 10. Install Kube Prometheus Stack
 
 ```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -181,7 +177,7 @@ kubectl port-forward svc/kind-prometheus-grafana -n monitoring 31000:80 --addres
 
 ---
 
-## 12. Prometheus Queries
+## 11. Prometheus Queries
 
 ```bash
 sum (rate (container_cpu_usage_seconds_total{namespace="default"}[1m])) / sum (machine_cpu_cores) * 100
@@ -197,5 +193,13 @@ sum(rate(container_network_transmit_bytes_total{namespace="default"}[5m])) by (p
 
 ---
 
+## 12. Deleting Kubernetes Cluster
+
+- Delete the Kind cluster:
+  ```bash
+  kind delete cluster --name=kind
+  ```
+
+---
 
 
